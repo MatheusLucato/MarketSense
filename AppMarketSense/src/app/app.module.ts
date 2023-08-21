@@ -12,6 +12,9 @@ import { NavBarComponent } from './menu-bar/menu-bar.component';
 import { MenubarModule } from 'primeng/menubar';
 import { CadastraProdutoComponent } from './cadastra-produto/cadastra-produto.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { ListarProdutoComponent } from './listar-produto/listar-produto.component';
+
+import { TableModule } from 'primeng/table';
 
 
 
@@ -21,6 +24,7 @@ import { SideBarComponent } from './side-bar/side-bar.component';
     NavBarComponent,
     CadastraProdutoComponent,
     SideBarComponent,
+    ListarProdutoComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
     ButtonModule,
     SidebarModule,
     BrowserAnimationsModule,
-    MenubarModule
+    MenubarModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
