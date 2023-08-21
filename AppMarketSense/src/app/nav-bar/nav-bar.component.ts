@@ -1,5 +1,6 @@
 
 import { Component } from '@angular/core';
+import { SideBarComponent } from '../side-bar/side-bar.component';
 
 
 @Component({
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
     templateUrl: './nav-bar.component.html'
 })
 export class NavBarComponent {
-
+    sidebarVisible = false;
 }

@@ -10,8 +10,8 @@ import { SidebarModule } from 'primeng/sidebar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MenubarModule } from 'primeng/menubar';
-import { MenuComponent } from './menu/menu.component';
 import { CadastraProdutoComponent } from './cadastra-produto/cadastra-produto.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
 
 
 
@@ -19,8 +19,8 @@ import { CadastraProdutoComponent } from './cadastra-produto/cadastra-produto.co
   declarations: [
     AppComponent,
     NavBarComponent,
-    MenuComponent,
     CadastraProdutoComponent,
+    SideBarComponent,
   ],
   imports: [
     BrowserModule,
