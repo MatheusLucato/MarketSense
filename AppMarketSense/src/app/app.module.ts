@@ -8,7 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NavBarComponent } from './menu-bar/menu-bar.component';
 import { MenubarModule } from 'primeng/menubar';
 import { CadastraProdutoComponent } from './cadastra-produto/cadastra-produto.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
