@@ -1,8 +1,12 @@
 <p-menubar> 
     <ng-template pTemplate="start">
-        <p-button (click)="sidebarVisible = true">
-            <i class="fa-solid fa-bars"></i> &nbsp; Menu
-        </p-button>
+            <button class="btn btn-secondary" (click)="sidebarVisible = true">
+                <i class="fa-solid fa-bars"></i> &nbsp; Menu
+            </button>
+            &nbsp;
+            <button class="btn btn-secondary">
+                <i class="fa fa-home"></i> &nbsp; Home
+            </button>
     </ng-template>
     MarketSense &copy;
 </p-menubar>
