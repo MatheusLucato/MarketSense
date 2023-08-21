@@ -4,9 +4,14 @@ import { CadastraProdutoComponent } from './cadastra-produto/cadastra-produto.co
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
+  },
+  {
     path: 'produto/cadastrar',
     component: CadastraProdutoComponent
-  },
+  }
 ];
 
 @NgModule({
