@@ -8,19 +8,25 @@ import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuComponent } from './menu/menu.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavBarComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ButtonModule,
     SidebarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MenubarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
