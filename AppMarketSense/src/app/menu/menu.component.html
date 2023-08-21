@@ -1,10 +1,16 @@
 
 <p-sidebar [(visible)]="sidebarVisible" styleClass="p-sidebar-sm">
-    <ul>
-        <li>
-            
-        </li>
-    </ul>
+    <ul class="list-group">
+        
+        
+            <a class="link-underline link-underline-opacity-0 link-underline-opacity-0-hover" href="produto/cadastrar">
+                <li class="list-group-item">
+                Cadastrar Produto
+                <i class="fa-solid fa-arrow-right" style="padding-left: 90px;"></i>
+                </li>
+            </a>
+        
+      </ul>
 </p-sidebar>
 <p-button (click)="sidebarVisible = true">
     <i class="fa-solid fa-bars"></i> &nbsp; Menu
