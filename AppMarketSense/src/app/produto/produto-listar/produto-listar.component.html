@@ -1,0 +1,29 @@
+<div class="container">
+    <h1 class="text-center" style="margin-top: 10%;">Produtos cadastrados</h1>
+    <table class="table table-bordered w-100" *ngIf="products.length > 0">
+      <thead>
+        <tr>
+          <th class="text-center">Nome</th>
+          <th class="text-center">Price</th>
+          <th class="text-end">&darr;Executar&darr;</th>
+        </tr>
+      </thead>
+      <tbody>   
+        <tr *ngFor="let product of products" class="align-items-center">
+          <td class="text-center align-middle">{{ product.name }}</td>
+          <td class="text-center align-middle">{{ product.price }}</td>
+          <td class="text-end">
+            <button class="btn btn-primary" (click)="abrirDialogEditar(product)"><i class="fa-solid fa-pen"></i></button>
+            &nbsp;
+            <button class="btn btn-danger" (click)="excluirProduct(product)"><i class="fa-solid fa-xmark"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn btn-success w-25" style="margin-left: 75%;" *ngIf="products.length > 0" (click)="abrirDialogCriar()">
+      <i class="fa-solid fa-plus"></i></button>
+    <button class="btn btn-success w-100" *ngIf="products.length == 0" (click)="abrirDialogCriar()">
+      <i class="fa-solid fa-plus"></i></button>
+
+</div>

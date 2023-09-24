@@ -1,0 +1,27 @@
+<div class="container">
+    <h1 class="text-center" style="margin-top: 10%;">Usuarios cadastrados</h1>
+    <table class="table table-bordered w-100" *ngIf="users.length > 0">
+      <thead>
+        <tr>
+          <th class="text-center">Nome</th>
+          <th class="text-end">&darr;Executar&darr;</th>
+        </tr>
+      </thead>
+      <tbody>   
+        <tr *ngFor="let user of users" class="align-items-center">
+          <td class="text-center align-middle">{{ user.name }}</td>
+          <td class="text-end">
+            <button class="btn btn-primary" (click)="abrirDialogEditar(user)"><i class="fa-solid fa-pen"></i></button>
+            &nbsp;
+            <button class="btn btn-danger" (click)="excluirUser(user)"><i class="fa-solid fa-xmark"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn btn-success w-25" style="margin-left: 75%;" *ngIf="users.length > 0" (click)="abrirDialogCriar()">
+      <i class="fa-solid fa-plus"></i></button>
+    <button class="btn btn-success w-100" *ngIf="users.length == 0" (click)="abrirDialogCriar()">
+      <i class="fa-solid fa-plus"></i></button>
+
+</div>

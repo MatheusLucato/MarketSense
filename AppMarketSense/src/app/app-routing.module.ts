@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CadastraProdutoComponent } from './cadastra-produto/cadastra-produto.component';
 import { LoginCadastroComponent } from './login-cadastro/login-cadastro.component';
+import { UsuarioListarComponent } from './usuario/usuario-listar/usuario-listar.component';
+import { ProdutoListarComponent } from './produto/produto-listar/produto-listar.component';
 
 const routes: Routes = [
   {
@@ -10,12 +11,16 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'produto/cadastrar',
-    component: CadastraProdutoComponent
+    path: 'produto/listar',
+    component: ProdutoListarComponent
   },
   {
     path: 'login',
     component: LoginCadastroComponent
+  },
+  {
+    path: 'usuarios/listar',
+    component: UsuarioListarComponent
   }
 ];
 
