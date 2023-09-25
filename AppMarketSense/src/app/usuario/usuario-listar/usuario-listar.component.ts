@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { UsuarioEditarComponent } from '../usuario-editar/usuario-editar.component';
 import { UsuarioInserirComponent } from '../usuario-inserir/usuario-inserir.component';
+import { UsuarioService } from '../service/usuario.service';
+import { Usuario } from 'src/app/shared/models/usuario.model';
+
 
 
 @Component({
@@ -9,15 +12,15 @@ import { UsuarioInserirComponent } from '../usuario-inserir/usuario-inserir.comp
   templateUrl: './usuario-listar.component.html',
   styleUrls: ['./usuario-listar.component.css']
 })
-export class UsuarioListarComponent {
-  constructor(private dialogService: DialogService) {}
-  users = [
-    { id: 1, name: 'Usuario 1' },
-    { id: 2, name: 'Usuario 2' },
-    { id: 3, name: 'Usuario 3' }
-  ];
+export class UsuarioListarComponent implements OnInit{
+  constructor(private dialogService: DialogService, private usuarioService: UsuarioService) {}
+  users: any = [];
 
-   abrirDialogEditar(usuario: any) {
+  ngOnInit() {
+    this.users = this.usuarioService.getUsers();
+  }
+
+   abrirDialogEditar(usuario: Usuario) {
     const ref = this.dialogService.open(UsuarioEditarComponent, {
       data: {
         usuario: usuario
@@ -26,15 +29,15 @@ export class UsuarioListarComponent {
       width: '70%'
     });
 
-    ref.onClose.subscribe((retorno: any) => {
+    ref.onClose.subscribe((retorno: Usuario) => {
       if (retorno) {
-        this.users[this.users.findIndex(user => user.id === retorno.id)].name = retorno.name;
+        this.users[this.users.findIndex((userFilter: Usuario) => userFilter.id === retorno.id)].nome = retorno.nome;
       }
     });
    }
 
-   excluirUser(usuario: any){
-    this.users.splice(this.users.findIndex(user => user.id === usuario.id), 1)
+   excluirUser(usuario: Usuario){
+    this.users.splice(this.users.findIndex((userFilter: Usuario) => userFilter.id === usuario.id), 1)
    }
 
 
@@ -44,9 +47,9 @@ export class UsuarioListarComponent {
       width: '70%'
     });
 
-    ref.onClose.subscribe((retorno: any) => {
+    ref.onClose.subscribe((retorno: Usuario) => {
       if (retorno) {
-        let retornoArray = { id: this.users.length + 1, name: retorno };
+        let retornoArray = { id: this.users.length + 1, nome: retorno.nome };
         this.users.push(retornoArray);
       }
     });

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { UsuarioInserirComponent } from './usuario-inserir/usuario-inserir.component';
 import { UsuarioEditarComponent } from './usuario-editar/usuario-editar.component';
 import { UsuarioListarComponent } from './usuario-listar/usuario-listar.component';
+import { UsuarioService } from './service/usuario.service';
 
 
 
@@ -18,6 +19,7 @@ import { UsuarioListarComponent } from './usuario-listar/usuario-listar.componen
     FormsModule
   ],
   providers: [
+    UsuarioService
   ]
 })
 export class UsuarioModule { }

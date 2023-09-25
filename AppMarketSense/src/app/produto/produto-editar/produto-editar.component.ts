@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { Produto } from 'src/app/shared/models/produto.model';
 
 @Component({
   selector: 'app-produto-editar',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./produto-editar.component.css']
 })
 export class ProdutoEditarComponent {
+  product: Produto;
 
+  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig) {
+    this.product = { ...config.data.product };
+  }
+
+  salvarEdicao() {
+    this.ref.close(this.product);
+  }
 }

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ProdutoInserirComponent } from './produto-inserir/produto-inserir.component';
 import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
 import { ProdutoListarComponent } from './produto-listar/produto-listar.component';
+import { ProdutoService } from './service/produto.service';
 
 
 
@@ -18,6 +19,7 @@ import { ProdutoListarComponent } from './produto-listar/produto-listar.componen
     FormsModule
   ],
   providers: [
+    ProdutoService
   ]
 })
 export class ProdutoModule { }

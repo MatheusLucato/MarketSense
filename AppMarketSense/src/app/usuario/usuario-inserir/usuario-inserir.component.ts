@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { Usuario } from 'src/app/shared/models/usuario.model';
 
 @Component({
   selector: 'app-usuario-inserir',
@@ -15,7 +16,7 @@ export class UsuarioInserirComponent {
   }
 
   salvarCadastro() {
-    this.ref.close(this.input1);
+    this.ref.close(new Usuario(0, this.input1));
   }
 
 }

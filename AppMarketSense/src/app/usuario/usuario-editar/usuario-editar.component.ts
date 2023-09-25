@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Usuario } from 'src/app/shared/models/usuario.model';
 
 
 
@@ -9,7 +10,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
   styleUrls: ['./usuario-editar.component.css']
 })
 export class UsuarioEditarComponent {
-  usuario: any;
+  usuario: Usuario;
 
   constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig) {
     this.usuario = { ...config.data.usuario };

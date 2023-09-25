@@ -1,0 +1,16 @@
+<div class="container">
+    <br>
+    <form>
+      <div class="mb-3">
+        <label for="input1" class="form-label" >Nome venda:</label>
+        <input type="text" name="input1" class="form-control" id="input1" [(ngModel)]="sale.nome">
+      </div>
+      <div class="mb-3">
+        <label for="input2" class="form-label">Nome produto:</label>
+        <input type="text" name="input2" class="form-control" id="input2" [(ngModel)]="sale.produto.nome">
+      </div>
+      <div class="mb-3">
+        <button type="button" (click)="salvarEdicao()" class="btn btn-dark">Salvar &larr;</button>
+      </div>
+    </form>
+  </div>

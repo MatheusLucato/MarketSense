@@ -18,10 +18,7 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ProdutoModule } from './produto/produto.module';
 import { DialogModule } from 'primeng/dialog';
-
-
-
-
+import { VendaModule } from './venda/venda.module';
 
 
 @NgModule({
@@ -42,7 +39,8 @@ import { DialogModule } from 'primeng/dialog';
     FormsModule,
     UsuarioModule,
     ProdutoModule,
-    DialogModule
+    DialogModule,
+    VendaModule
   ],
   providers: [DialogService],
   bootstrap: [AppComponent]
