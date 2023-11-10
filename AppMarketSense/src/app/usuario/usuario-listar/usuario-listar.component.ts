@@ -17,40 +17,52 @@ export class UsuarioListarComponent implements OnInit{
   users: any = [];
 
   ngOnInit() {
-    //this.users = this.usuarioService.listar();
+    this.listaUsers();
   }
 
-  //  abrirDialogEditar(usuario: Usuario) {
-  //   const ref = this.dialogService.open(UsuarioEditarComponent, {
-  //     data: {
-  //       usuario: usuario
-  //     },
-  //     header: 'Editar Usuário',
-  //     width: '70%'
-  //   });
+  listaUsers(){
+    this.usuarioService.getUsers()
+    .then(users => {
+      this.users = users;
+    })
+    .catch(error => {
+      console.error('Erro ao obter usuários:', error);
+    });
+  }
 
-  //   ref.onClose.subscribe((retorno: Usuario) => {
-  //     if (retorno) {
-  //       this.users[this.users.findIndex((userFilter: Usuario) => userFilter.id === retorno.id)].nome = retorno.nome;
-  //     }
-  //   });
-  //  }
+   abrirDialogEditar(usuario: Usuario) {
+    const ref = this.dialogService.open(UsuarioEditarComponent, {
+      data: {
+        usuario: usuario
+      },
+      header: 'Editar Usuário',
+      width: '70%'
+    });
 
-  //  excluirUser(usuario: Usuario){
-  //   this.users.splice(this.users.findIndex((userFilter: Usuario) => userFilter.id === usuario.id), 1)
-  //  }
+    ref.onClose.subscribe((retorno: any) => {
+  
+      this.users = this.listaUsers();
+      
+    });
+   }
+
+  async excluirUser(userId: string){
+    await this.usuarioService.excluir(userId);
+    this.listaUsers();
+  }
 
 
-   abrirDialogCriar() {
+  abrirDialogCriar() {
     const ref = this.dialogService.open(UsuarioInserirComponent, {
       header: 'Cadastrar Usuário',
       width: '70%'
     });
 
-    ref.onClose.subscribe((retorno: Usuario) => {
-      if (retorno) {
-        
-      }
+    ref.onClose.subscribe((retorno: any) => {
+      
+      this.listaUsers();
+      
     });
-   }
+
+  }
 }

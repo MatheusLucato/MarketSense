@@ -7,12 +7,16 @@
       </div>
       <div class="mb-3">
         <label for="newPass" class="form-label">Nova senha:</label>
-        <input type="text" name="newPass" class="form-control" [(ngModel)]="newPass" id="newPass">
+        <input [type]="senhaNovaType" name="newPass" class="form-control" [(ngModel)]="newPass" id="newPass">
       </div>
       <div class="mb-3">
         <label for="newPassConfirm" class="form-label">Confirmar senha:</label>
-        <input type="text" name="newPassConfirm" class="form-control"[(ngModel)]="newPassConfirm" id="newPassConfirm">
+        <input [type]="senhaNovaConfirmaType" name="newPassConfirm" class="form-control"[(ngModel)]="newPassConfirm" id="newPassConfirm">
       </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exibirSenha" [(ngModel)]="exibirSenha" (change)="exibeSenha()">
+        <label class="form-check-label" for="exibirSenha">Exibir Senhas</label>
+      </div>  
       <div class="mb-3">
         <button type="button" class="btn btn-dark" (click)="validaCadastro()">Salvar &larr;</button>
       </div>
