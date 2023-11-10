@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ProdutoInserirComponent } from '../produto-inserir/produto-inserir.component';
 import { ProdutoEditarComponent } from '../produto-editar/produto-editar.component';
@@ -28,12 +28,13 @@ export class ProdutoListarComponent implements OnInit{
       width: '70%'
     });
 
-    ref.onClose.subscribe((retorno: Produto) => {
+    ref.onClose.subscribe((retorno: Produto) => {      
       this.products[this.products.findIndex((productFilter: Produto) => productFilter.id === retorno.id)].nome = retorno.nome;
       this.products[this.products.findIndex((productFilter: Produto) => productFilter.id === retorno.id)].preco = retorno.preco;
-      
+
     });
    }
+   
 
    excluirProduct(product: Produto){
     this.products.splice(this.products.findIndex((productFilter: Produto) => productFilter.id === product.id), 1)

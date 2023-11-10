@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './components/menu-bar/menu-bar.component';
 import { MenubarModule } from 'primeng/menubar';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
-import { LoginCadastroComponent } from './login-cadastro/login-cadastro.component';
+import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { UsuarioModule } from './usuario/usuario.module';
@@ -21,12 +21,13 @@ import { DialogModule } from 'primeng/dialog';
 import { VendaModule } from './venda/venda.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     SideBarComponent,
-    LoginCadastroComponent,
+    LoginComponent,
     HomeComponent
   ],
   imports: [

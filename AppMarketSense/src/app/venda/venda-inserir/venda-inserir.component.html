@@ -1,1 +1,22 @@
-<p>venda-inserir works!</p>
+<div class="container">
+    <br>
+    <form>
+      <div class="mb-3">
+        <label for="input1" class="form-label" >Nome venda:</label>
+        <input type="text" [(ngModel)]="input1" name="input1" class="form-control" id="input1">
+      </div>
+      <div class="mb-3">
+        <label for="input2" class="form-label">Produto:</label>
+        <select class="form-select" [(ngModel)]="input2" name="input2">
+          <option *ngFor="let produto of produtos" [value]="produto.nome">{{ produto.nome }}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="input3" [(ngModel)]="input3" class="form-label">Quantidade:</label>
+        <input type="text" name="input3" class="form-control" id="input3">
+      </div>
+      <div class="mb-3">
+        <button type="button" class="btn btn-dark" (click)="salvarCadastro()">Salvar &larr;</button>
+      </div>
+    </form>
+  </div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Usuario } from 'src/app/shared/models/usuario.model';
+import { UsuarioService } from '../service/usuario.service';
 
 @Component({
   selector: 'app-usuario-inserir',
@@ -8,15 +9,21 @@ import { Usuario } from 'src/app/shared/models/usuario.model';
   styleUrls: ['./usuario-inserir.component.css']
 })
 export class UsuarioInserirComponent {
-  input1: string = '';
-  input2: string = '';
+  nomeUser: string = '';
+  newPass: string = '';
+  newPassConfirm: string = '';
 
-  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig) {
+  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, private usuarioService: UsuarioService) {
     
+  }
+  validaCadastro() {
+    if((this.newPass === this.newPassConfirm) && this.nomeUser != null)
+      this.salvarCadastro();
   }
 
   salvarCadastro() {
-    this.ref.close(new Usuario(0, this.input1));
+    this.usuarioService.saveUser(new Usuario(this.nomeUser, this.newPass))
+    this.ref.close();
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Produto } from 'src/app/shared/models/produto.model';
 
@@ -10,7 +10,7 @@ import { Produto } from 'src/app/shared/models/produto.model';
 export class ProdutoEditarComponent {
   product: Produto;
 
-  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig) {
+  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, public cdRef: ChangeDetectorRef) {
     this.product = { ...config.data.product };
   }
 

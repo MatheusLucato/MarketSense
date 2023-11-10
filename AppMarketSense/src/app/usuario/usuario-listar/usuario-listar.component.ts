@@ -17,28 +17,28 @@ export class UsuarioListarComponent implements OnInit{
   users: any = [];
 
   ngOnInit() {
-    this.users = this.usuarioService.getUsers();
+    //this.users = this.usuarioService.listar();
   }
 
-   abrirDialogEditar(usuario: Usuario) {
-    const ref = this.dialogService.open(UsuarioEditarComponent, {
-      data: {
-        usuario: usuario
-      },
-      header: 'Editar Usuário',
-      width: '70%'
-    });
+  //  abrirDialogEditar(usuario: Usuario) {
+  //   const ref = this.dialogService.open(UsuarioEditarComponent, {
+  //     data: {
+  //       usuario: usuario
+  //     },
+  //     header: 'Editar Usuário',
+  //     width: '70%'
+  //   });
 
-    ref.onClose.subscribe((retorno: Usuario) => {
-      if (retorno) {
-        this.users[this.users.findIndex((userFilter: Usuario) => userFilter.id === retorno.id)].nome = retorno.nome;
-      }
-    });
-   }
+  //   ref.onClose.subscribe((retorno: Usuario) => {
+  //     if (retorno) {
+  //       this.users[this.users.findIndex((userFilter: Usuario) => userFilter.id === retorno.id)].nome = retorno.nome;
+  //     }
+  //   });
+  //  }
 
-   excluirUser(usuario: Usuario){
-    this.users.splice(this.users.findIndex((userFilter: Usuario) => userFilter.id === usuario.id), 1)
-   }
+  //  excluirUser(usuario: Usuario){
+  //   this.users.splice(this.users.findIndex((userFilter: Usuario) => userFilter.id === usuario.id), 1)
+  //  }
 
 
    abrirDialogCriar() {
@@ -49,8 +49,7 @@ export class UsuarioListarComponent implements OnInit{
 
     ref.onClose.subscribe((retorno: Usuario) => {
       if (retorno) {
-        let retornoArray = { id: this.users.length + 1, nome: retorno.nome };
-        this.users.push(retornoArray);
+        
       }
     });
    }

@@ -49,7 +49,7 @@ export class VendaListarComponent implements OnInit{
     ref.onClose.subscribe((retorno: Venda) => {
       if (retorno) {
         let retornoArray = { id: this.sales.length + 1, nome: retorno.nome };
-        this.sales.push(retornoArray);
+        //this.sales.push(retornoArray);
       }
     });
    }
