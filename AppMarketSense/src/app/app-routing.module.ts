@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { UsuarioListarComponent } from './usuario/usuario-listar/usuario-listar.component';
 import { ProdutoListarComponent } from './produto/produto-listar/produto-listar.component';
 import { VendaListarComponent } from './venda/venda-listar/venda-listar.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
