@@ -15,8 +15,18 @@ export class ProdutoListarComponent implements OnInit{
   products: any = []
   constructor(private dialogService: DialogService, private produtoService: ProdutoService) {}
 
-  ngOnInit(){
-    this.products = this.produtoService.getProduct();
+  ngOnInit() {
+    this.listaProdutos();
+  }
+
+  listaProdutos(){
+    this.produtoService.getProduct()
+    .then(products => {
+      this.products = products;
+    })
+    .catch(error => {
+      console.error('Erro ao obter produtos:', error);
+    });
   }
 
   abrirDialogEditar(product: Produto) {
@@ -28,16 +38,15 @@ export class ProdutoListarComponent implements OnInit{
       width: '70%'
     });
 
-    ref.onClose.subscribe((retorno: Produto) => {      
-      this.products[this.products.findIndex((productFilter: Produto) => productFilter.id === retorno.id)].nome = retorno.nome;
-      this.products[this.products.findIndex((productFilter: Produto) => productFilter.id === retorno.id)].preco = retorno.preco;
-
+    ref.onClose.subscribe((retorno: any) => {      
+      this.listaProdutos();
     });
    }
    
 
-   excluirProduct(product: Produto){
-    this.products.splice(this.products.findIndex((productFilter: Produto) => productFilter.id === product.id), 1)
+   async excluirProduct(productId: string){
+    await this.produtoService.excluir(productId);
+    this.listaProdutos();
    }
 
 
@@ -47,11 +56,10 @@ export class ProdutoListarComponent implements OnInit{
       width: '70%'
     });
 
-    ref.onClose.subscribe((retorno: Produto) => {
-      if (retorno) {
-         let retornoArray = { id: this.products.length + 1, nome: retorno.nome, preco: retorno.preco };
-         this.products.push(retornoArray);
-      }
+    ref.onClose.subscribe((retorno: any) => {
+      
+      this.listaProdutos();
+      
     });
    }
    

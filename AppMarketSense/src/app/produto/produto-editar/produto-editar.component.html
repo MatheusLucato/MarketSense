@@ -3,14 +3,14 @@
     <form>
       <div class="mb-3">
         <label for="input1" class="form-label" >Produto:</label>
-        <input type="text" name="input1" class="form-control" id="input1" [(ngModel)]="product.nome">
+        <input type="text" name="nomeProduto" class="form-control" id="nomeProduto" [(ngModel)]="nomeProduto">
       </div>
       <div class="mb-3">
         <label for="input2" class="form-label">Preco:</label>
-        <input type="text" name="input2" class="form-control" id="input2" [(ngModel)]="product.preco">
+        <input type="text" name="precoProduto" class="form-control" id="precoProduto" [(ngModel)]="precoProduto">
       </div>
       <div class="mb-3">
-        <button type="button" (click)="salvarEdicao()" class="btn btn-dark">Salvar &larr;</button>
+        <button type="button" (click)="validaEdicao()" class="btn btn-dark">Salvar &larr;</button>
       </div>
     </form>
   </div>

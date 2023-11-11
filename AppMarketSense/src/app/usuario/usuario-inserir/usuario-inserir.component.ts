@@ -12,9 +12,9 @@ export class UsuarioInserirComponent {
   nomeUser: string = '';
   newPass: string = '';
   newPassConfirm: string = '';
-  exibirSenha = false;
-  senhaNovaType = 'password';
-  senhaNovaConfirmaType = 'password';
+  exibirSenha: boolean = false;
+  senhaNovaType: string = 'password';
+  senhaNovaConfirmaType: string = 'password';
 
   constructor(private cdr: ChangeDetectorRef,public ref: DynamicDialogRef, public config: DynamicDialogConfig, private usuarioService: UsuarioService) {
     

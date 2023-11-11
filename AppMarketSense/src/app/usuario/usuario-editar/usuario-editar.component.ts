@@ -17,13 +17,13 @@ export class UsuarioEditarComponent {
   usuarioId: string | undefined;
   usuarioNome: string | undefined;
   senhaAtual: string | undefined;
-  senhaNova = "";
-  confirmaSenhaNova = "";
-  edita = false;
-  exibirSenha = false;
-  senhaAtualType = 'password';
-  senhaNovaType = 'password';
-  confirmaSenhaNovaType = 'password';
+  senhaNova: string = "";
+  confirmaSenhaNova: string = "";
+  edita: boolean = false;
+  exibirSenha: boolean = false;
+  senhaAtualType: string = 'password';
+  senhaNovaType: string = 'password';
+  confirmaSenhaNovaType: string = 'password';
 
 
   constructor(private cdr: ChangeDetectorRef, private usuarioService:UsuarioService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) {
@@ -35,27 +35,32 @@ export class UsuarioEditarComponent {
   }
 
   validaEdicao(){
-    if((this.usuarioNome != "" && this.usuarioNome != null) && (this.senhaAtual != "" && this.senhaAtual != null)){
+    if((this.usuarioNome != "" && this.usuarioNome != null)){
       if(this.usuarioNome != this.usuario.nome){
         this.usuario.nome = this.usuarioNome;
         this.edita = true;
       }
+      else{
+        this.edita = false;
+      }
   
-      if(this.senhaNova != "" && this.confirmaSenhaNova != null){
+    }
+
+    if((this.senhaNova != "" && this.senhaNova != null) && (this.confirmaSenhaNova != "" && this.confirmaSenhaNova != null)){
+      if(this.senhaNova === this.confirmaSenhaNova){
         if(this.senhaAtual != this.senhaNova){
-          if(this.senhaNova === this.confirmaSenhaNova){
-            this.usuario.senha = btoa(this.senhaNova);
-            this.edita = true;
-          }
+          this.usuario.senha = btoa(this.senhaNova);
+          this.edita = true;
         }
+      }
+      else{
+        this.edita = false;
       }
     }
     
     
     if(this.edita)
       this.salvarEdicao();
-    else
-      this.ref.close();
   }
 
   async salvarEdicao() {

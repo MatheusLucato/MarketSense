@@ -22,7 +22,7 @@ export class VendaInserirComponent {
   }
 
   salvarCadastro() {
-    this.ref.close(new Venda(1, this.input1, new Produto(0, this.input2) ));
+    this.ref.close(new Venda(1, this.input1, new Produto("", this.input2) ));
   }
 
 }

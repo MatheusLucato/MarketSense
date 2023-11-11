@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Produto } from 'src/app/shared/models/produto.model';
+import { ProdutoService } from '../service/produto.service';
 
 @Component({
   selector: 'app-produto-inserir',
@@ -8,13 +9,30 @@ import { Produto } from 'src/app/shared/models/produto.model';
   styleUrls: ['./produto-inserir.component.css']
 })
 export class ProdutoInserirComponent {
-  input1: string = '';
-  input2: string = '';
+  nomeProduto: string = '';
+  precoProduto: string = '';
 
-  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig) {
+  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, private cdr: ChangeDetectorRef, private produtoService: ProdutoService) {
   }
 
-  salvarCadastro() {
-    this.ref.close(new Produto(0,this.input1, this.input2));
+  validaCadastro() {
+    if(this.nomeProduto != "" && this.precoProduto != ""){
+      if(this.isNumber(this.precoProduto))
+        this.salvarCadastro();
+    }
+    
   }
+
+  isNumber(value: string): boolean {
+    
+    return !isNaN(Number(value));
+  }
+  
+
+  async salvarCadastro() {
+  
+    await this.produtoService.saveProduct(new Produto("", this.nomeProduto, this.precoProduto));
+    this.ref.close();
+  }
+
 }

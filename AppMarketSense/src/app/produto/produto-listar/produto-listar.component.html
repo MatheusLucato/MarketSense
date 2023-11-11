@@ -3,6 +3,7 @@
     <table class="table table-bordered w-100" *ngIf="products.length > 0">
       <thead>
         <tr>
+          <th class="text-center">Id</th>
           <th class="text-center">Nome</th>
           <th class="text-center">Preco</th>
           <th class="text-end">&darr;Executar&darr;</th>
@@ -10,12 +11,13 @@
       </thead>
       <tbody>   
         <tr *ngFor="let product of products" class="align-items-center">
+          <td class="text-center align-middle">{{ product.id }}</td>
           <td class="text-center align-middle">{{ product.nome }}</td>
           <td class="text-center align-middle">{{ product.preco }}</td>
           <td class="text-end">
             <button class="btn btn-primary" (click)="abrirDialogEditar(product)"><i class="fa-solid fa-pen"></i></button>
             &nbsp;
-            <button class="btn btn-danger" (click)="excluirProduct(product)"><i class="fa-solid fa-xmark"></i></button>
+            <button class="btn btn-danger" (click)="excluirProduct(product.id)"><i class="fa-solid fa-xmark"></i></button>
           </td>
         </tr>
       </tbody>
