@@ -3,6 +3,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Usuario } from 'src/app/shared/models/usuario.model';
 import { UsuarioService } from '../service/usuario.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -26,7 +27,7 @@ export class UsuarioEditarComponent {
   confirmaSenhaNovaType: string = 'password';
 
 
-  constructor(private cdr: ChangeDetectorRef, private usuarioService:UsuarioService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) {
+  constructor(private messageService: MessageService, private cdr: ChangeDetectorRef, private usuarioService:UsuarioService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) {
     this.usuario = { ...config.data.usuario };
     this.usuarioId = this.usuario.id;
     this.usuarioNome = this.usuario.nome;
@@ -34,33 +35,53 @@ export class UsuarioEditarComponent {
       this.senhaAtual = atob(this.usuario.senha);
   }
 
-  validaEdicao(){
-    if((this.usuarioNome != "" && this.usuarioNome != null)){
-      if(this.usuarioNome != this.usuario.nome){
-        this.usuario.nome = this.usuarioNome;
-        this.edita = true;
-      }
-      else{
-        this.edita = false;
-      }
-  
-    }
+  validaEdicao() {
 
-    if((this.senhaNova != "" && this.senhaNova != null) && (this.confirmaSenhaNova != "" && this.confirmaSenhaNova != null)){
-      if(this.senhaNova === this.confirmaSenhaNova){
-        if(this.senhaAtual != this.senhaNova){
-          this.usuario.senha = btoa(this.senhaNova);
-          this.edita = true;
-        }
-      }
-      else{
+    if (this.usuario.nome === this.usuarioNome && this.senhaNova === this.confirmaSenhaNova && this.senhaNova === this.usuario.senha) 
+      this.showAlteraDadosMessage();
+    
+    if (((this.senhaNova == "" || this.senhaNova == null) && (this.confirmaSenhaNova == "" || this.confirmaSenhaNova == null)) && this.usuarioNome == this.usuarioNome)
+      this.showAlteraDadosMessage();
+    
+    
+      
+
+    if (this.usuarioNome != null && this.usuarioNome != "" && this.usuarioNome != this.usuario.nome) {
+      this.usuario.nome = this.usuarioNome;
+      this.edita = true;
+    } else {
+      this.edita = false;
+    }
+  
+    if (this.senhaNova != null && this.senhaNova != "" && this.confirmaSenhaNova != null && this.confirmaSenhaNova != "") {
+      if (this.senhaNova === this.confirmaSenhaNova && this.senhaAtual != this.senhaNova) {
+        this.usuario.senha = btoa(this.senhaNova);
+        this.edita = true;
+      } else {
         this.edita = false;
       }
     }
-    
-    
-    if(this.edita)
+    if(this.senhaNova != this.confirmaSenhaNova){
+      this.showErro();
+      this.edita=false;
+    }
+  
+    if (this.edita) {
       this.salvarEdicao();
+    }
+  }
+  
+
+  showErro() {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Preencha os campos obrigatorios corretamente!' });
+  }
+
+  showSucess() {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Dados atualizados com sucesso!' });
+  }
+
+  showAlteraDadosMessage() {
+    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Dados identicos, realize alguma alteracao!' });
   }
 
   async salvarEdicao() {

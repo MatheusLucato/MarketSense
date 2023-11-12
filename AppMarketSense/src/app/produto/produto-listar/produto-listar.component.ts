@@ -4,6 +4,7 @@ import { ProdutoInserirComponent } from '../produto-inserir/produto-inserir.comp
 import { ProdutoEditarComponent } from '../produto-editar/produto-editar.component';
 import { ProdutoService } from '../service/produto.service';
 import { Produto } from 'src/app/shared/models/produto.model';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Produto } from 'src/app/shared/models/produto.model';
 })
 export class ProdutoListarComponent implements OnInit{
   products: any = []
-  constructor(private dialogService: DialogService, private produtoService: ProdutoService) {}
+  constructor(private messageService: MessageService, private dialogService: DialogService, private produtoService: ProdutoService) {}
 
   ngOnInit() {
     this.listaProdutos();
@@ -46,8 +47,13 @@ export class ProdutoListarComponent implements OnInit{
 
    async excluirProduct(productId: string){
     await this.produtoService.excluir(productId);
+    this.showSucess();
     this.listaProdutos();
    }
+
+   showSucess() {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Excluido com sucesso!' });
+  }
 
 
    abrirDialogCriar() {

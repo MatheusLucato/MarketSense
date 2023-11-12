@@ -2,22 +2,22 @@
     <br>
     <form>
       <div class="mb-3">
-        <label for="input1" class="form-label" >Usuario:</label>
+        <label for="input1" class="form-label" >Usuario*:</label>
         <input type="text" name="usuarioNome" class="form-control" id="usuarioNome" [(ngModel)]="usuarioNome">
       </div>
       
-      <div class="mb-3">
-        <label for="input2" class="form-label">Senha atual:</label>
+    <div class="mb-3">
+        <label for="senhaAtual" class="form-label">Senha atual*:</label>
         <input disabled [type]="senhaAtualType" name="senhaAtual" class="form-control" id="senhaAtual" [(ngModel)]="senhaAtual">
-      </div>
-      <div class="mb-3">
-        <label for="input2" class="form-label">Nova senha:</label>
+    </div>
+    <div class="mb-3">
+        <label for="senhaNova" class="form-label">Nova senha{{ senhaNova || confirmaSenhaNova ? '*' : '' }}:</label>
         <input [type]="senhaNovaType" name="senhaNova" class="form-control" id="senhaNova" [(ngModel)]="senhaNova">
-      </div>
-      <div class="mb-3">
-        <label for="input3" class="form-label">Confirmar nova senha:</label>
+    </div>
+    <div class="mb-3">
+        <label for="confirmaSenhaNova" class="form-label">Confirmar nova senha{{ senhaNova || confirmaSenhaNova ? '*' : '' }}:</label>
         <input [type]="confirmaSenhaNovaType" name="confirmaSenhaNova" class="form-control" id="confirmaSenhaNova" [(ngModel)]="confirmaSenhaNova">
-      </div>    
+    </div>
       <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="exibirSenha" [(ngModel)]="exibirSenha" (change)="exibeSenha()">
         <label class="form-check-label" for="exibirSenha">Exibir Senhas</label>

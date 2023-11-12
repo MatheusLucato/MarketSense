@@ -2,15 +2,15 @@
     <br>
     <form>
       <div class="mb-3">
-        <label for="nomeUser" class="form-label" >Usuario:</label>
+        <label for="nomeUser" class="form-label" >Usuario*:</label>
         <input type="text" name="nomeUser" class="form-control" [(ngModel)]="nomeUser" id="nomeUser">
       </div>
       <div class="mb-3">
-        <label for="newPass" class="form-label">Nova senha:</label>
+        <label for="newPass" class="form-label">Senha*:</label>
         <input [type]="senhaNovaType" name="newPass" class="form-control" [(ngModel)]="newPass" id="newPass">
       </div>
       <div class="mb-3">
-        <label for="newPassConfirm" class="form-label">Confirmar senha:</label>
+        <label for="newPassConfirm" class="form-label">Confirmar senha*:</label>
         <input [type]="senhaNovaConfirmaType" name="newPassConfirm" class="form-control"[(ngModel)]="newPassConfirm" id="newPassConfirm">
       </div>
       <div class="mb-3 form-check">

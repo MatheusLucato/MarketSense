@@ -19,7 +19,9 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ProdutoModule } from './produto/produto.module';
 import { DialogModule } from 'primeng/dialog';
 import { VendaModule } from './venda/venda.module';
-
+import { ToastModule } from 'primeng/toast';
+import { MessageModule } from "primeng/message";
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -41,9 +43,11 @@ import { VendaModule } from './venda/venda.module';
     UsuarioModule,
     ProdutoModule,
     DialogModule,
-    VendaModule
+    VendaModule,
+    ToastModule,
+    MessageModule
   ],
-  providers: [DialogService],
+  providers: [DialogService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

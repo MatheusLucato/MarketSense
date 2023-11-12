@@ -1,6 +1,6 @@
 <p-menubar> 
     <ng-template pTemplate="start">
-            <button class="btn btn-secondary" (click)="sidebarVisible = true">
+            <button class="btn btn-secondary" (click)="sidebarVisible = true" *ngIf="this.logado">
                 <i class="fa-solid fa-bars"></i> &nbsp; Menu
             </button>
             &nbsp;
@@ -10,13 +10,18 @@
                 </button> 
             </a>
             &nbsp;
-            <a href="login">
-                <button class="btn btn-secondary">
-                    <i class="fa-solid fa-arrow-right-to-bracket"></i> &nbsp; Login
-                </button> 
-            </a>
     </ng-template>
-    MarketSense &copy;
+    &nbsp;
+    <a href="login">
+        <button class="btn btn-secondary" *ngIf="!this.logado">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> &nbsp; Login
+        </button> 
+    </a>
+    &nbsp;
+    <button *ngIf="this.logado" class="btn btn-secondary" (click)="logout()">{{ this.username }} 
+        <i class="fa-solid fa-right-from-bracket"></i>
+    </button>
+    
 </p-menubar>
 
 <p-sidebar [(visible)]="sidebarVisible" styleClass="p-sidebar-sm">

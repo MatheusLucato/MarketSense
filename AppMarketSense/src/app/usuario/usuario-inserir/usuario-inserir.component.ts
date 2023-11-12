@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Usuario } from 'src/app/shared/models/usuario.model';
 import { UsuarioService } from '../service/usuario.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-usuario-inserir',
@@ -16,20 +17,37 @@ export class UsuarioInserirComponent {
   senhaNovaType: string = 'password';
   senhaNovaConfirmaType: string = 'password';
 
-  constructor(private cdr: ChangeDetectorRef,public ref: DynamicDialogRef, public config: DynamicDialogConfig, private usuarioService: UsuarioService) {
+  constructor(private messageService: MessageService, private cdr: ChangeDetectorRef,public ref: DynamicDialogRef, public config: DynamicDialogConfig, private usuarioService: UsuarioService) {
     
   }
   validaCadastro() {
     if(this.newPass != "" && this.newPassConfirm != "" && this.nomeUser != ""){
-      if((this.newPass === this.newPassConfirm) && this.nomeUser != null)
+      if((this.newPass === this.newPassConfirm) && this.nomeUser != null){
         this.salvarCadastro();
+      }
+      else{
+        this.showErroInputs();
+      }
+        
+    }
+    else{
+      this.showErroInputs();
     }
     
+  }
+
+  showErroInputs() {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Preencha os campos obrigatorios corretamente!' });
+  }
+
+  showSucess() {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Usuario inserido corretamente!' });
   }
 
   async salvarCadastro() {
   
     await this.usuarioService.saveUser(new Usuario("", this.nomeUser, btoa(this.newPass)));
+    this.showSucess();
     this.ref.close();
   }
 

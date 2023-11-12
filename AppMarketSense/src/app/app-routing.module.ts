@@ -5,16 +5,25 @@ import { UsuarioListarComponent } from './usuario/usuario-listar/usuario-listar.
 import { ProdutoListarComponent } from './produto/produto-listar/produto-listar.component';
 import { VendaListarComponent } from './venda/venda-listar/venda-listar.component';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './guards/auth.guards';
+import { NavBarComponent } from './components/menu-bar/menu-bar.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
     path: 'produto/listar',
-    component: ProdutoListarComponent
+    component: ProdutoListarComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'navbar',
+    component: NavBarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -22,11 +31,13 @@ const routes: Routes = [
   },
   {
     path: 'usuarios/listar',
-    component: UsuarioListarComponent
+    component: UsuarioListarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'vendas/listar',
-    component: VendaListarComponent
+    component: VendaListarComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
