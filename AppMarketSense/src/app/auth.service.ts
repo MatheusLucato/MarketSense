@@ -23,6 +23,7 @@ export class AuthService {
         this.salvarChaveAutenticacao(uuidv4());
         this.salvarUserNameAutenticacao(response.data.nome);
         this.salvarIdAutenticacao(response.data.id);
+        this.salvarAdminAutenticacao(response.data.admin);
       }
 
       return result;
@@ -51,6 +52,14 @@ export class AuthService {
       return sessionStorage.getItem('username');
   }
 
+  salvarAdminAutenticacao(admin: string){
+      sessionStorage.setItem('admin', admin);
+  }
+
+  obterAdminAutenticacao(): string | null{
+      return sessionStorage.getItem('admin');
+  }
+
   salvarChaveAutenticacao(chave: string): void {
     sessionStorage.setItem(this.AUTH_KEY, chave);
   }
@@ -63,6 +72,7 @@ export class AuthService {
     sessionStorage.removeItem(this.AUTH_KEY);
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('id');
+    sessionStorage.removeItem('admin');
   }
 
   verificarChaveAutenticacao(): boolean {

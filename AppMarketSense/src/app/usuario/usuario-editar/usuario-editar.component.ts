@@ -25,22 +25,24 @@ export class UsuarioEditarComponent {
   senhaAtualType: string = 'password';
   senhaNovaType: string = 'password';
   confirmaSenhaNovaType: string = 'password';
+  adminCheck: boolean = false;
 
 
   constructor(private messageService: MessageService, private cdr: ChangeDetectorRef, private usuarioService:UsuarioService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) {
     this.usuario = { ...config.data.usuario };
     this.usuarioId = this.usuario.id;
     this.usuarioNome = this.usuario.nome;
+    this.adminCheck = this.usuario.admin != undefined ? this.usuario.admin : false;
     if (this.usuario.senha) 
       this.senhaAtual = atob(this.usuario.senha);
   }
 
   validaEdicao() {
 
-    if (this.usuario.nome === this.usuarioNome && this.senhaNova === this.confirmaSenhaNova && this.senhaNova === this.usuario.senha) 
+    if (this.usuario.nome === this.usuarioNome && this.senhaNova === this.confirmaSenhaNova && this.senhaNova === this.usuario.senha && this.adminCheck === this.usuario.admin) 
       this.showAlteraDadosMessage();
     
-    if (((this.senhaNova == "" || this.senhaNova == null) && (this.confirmaSenhaNova == "" || this.confirmaSenhaNova == null)) && this.usuarioNome == this.usuarioNome)
+    if (((this.senhaNova == "" || this.senhaNova == null) && (this.confirmaSenhaNova == "" || this.confirmaSenhaNova == null)) && this.usuarioNome == this.usuarioNome && this.adminCheck === this.usuario.admin)
       this.showAlteraDadosMessage();
     
     
@@ -65,12 +67,20 @@ export class UsuarioEditarComponent {
       this.showErro();
       this.edita=false;
     }
+
+    if(this.adminCheck != this.usuario.admin){
+      this.usuario.admin = this.adminCheck;
+      this.edita = true;
+    }
   
     if (this.edita) {
       this.salvarEdicao();
     }
   }
   
+  alterarValorCheckbox() {
+    this.adminCheck = !this.adminCheck;
+  }
 
   showErro() {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Preencha os campos obrigatorios corretamente!' });

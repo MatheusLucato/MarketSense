@@ -5,13 +5,16 @@
             Listar Produtos
         </li>
     </a>
-    <br>
-    <br>
-    <a class="link-underline link-underline-opacity-0 link-underline-opacity-0-hover" href="usuarios/listar">
-        <li class="list-group-item text-center">
-            Listar Usuarios
-        </li> 
-    </a>
+    <div *ngIf="this.admin">
+        <br>
+        <br>
+        <a class="link-underline link-underline-opacity-0 link-underline-opacity-0-hover" href="usuarios/listar">
+            <li class="list-group-item text-center">
+                Listar Usuarios
+            </li> 
+        </a>
+    </div>
+    
     <br>
     <br>
     <a class="link-underline link-underline-opacity-0 link-underline-opacity-0-hover" href="vendas/listar">

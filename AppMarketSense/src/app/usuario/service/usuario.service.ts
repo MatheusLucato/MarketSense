@@ -36,6 +36,7 @@ export class UsuarioService {
       await axios.post(`${this.urlBase}/usuario`, {
         nome: usuario.nome,
         senha: usuario.senha,
+        admin: usuario.admin,
     });      console.log('Usuário inserido com sucesso.');
     } catch (error) {
       console.error('Erro ao inserir o usuário:', error);
@@ -48,6 +49,7 @@ export class UsuarioService {
         id: usuario.id,
         nome: usuario.nome,
         senha: usuario.senha,
+        admin: usuario.admin
     });      console.log('Usuário atualizado com sucesso.');
     } catch (error) {
       console.error('Erro ao atualizar o usuário:', error);

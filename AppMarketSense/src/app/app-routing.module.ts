@@ -21,11 +21,6 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'navbar',
-    component: NavBarComponent,
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'login',
     component: LoginComponent
   },

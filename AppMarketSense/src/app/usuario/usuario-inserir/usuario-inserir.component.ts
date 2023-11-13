@@ -16,6 +16,7 @@ export class UsuarioInserirComponent {
   exibirSenha: boolean = false;
   senhaNovaType: string = 'password';
   senhaNovaConfirmaType: string = 'password';
+  adminCheck: boolean = false;
 
   constructor(private messageService: MessageService, private cdr: ChangeDetectorRef,public ref: DynamicDialogRef, public config: DynamicDialogConfig, private usuarioService: UsuarioService) {
     
@@ -36,6 +37,10 @@ export class UsuarioInserirComponent {
     
   }
 
+  alterarValorCheckbox() {
+    this.adminCheck = !this.adminCheck;
+  }
+
   showErroInputs() {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Preencha os campos obrigatorios corretamente!' });
   }
@@ -46,7 +51,7 @@ export class UsuarioInserirComponent {
 
   async salvarCadastro() {
   
-    await this.usuarioService.saveUser(new Usuario("", this.nomeUser, btoa(this.newPass)));
+    await this.usuarioService.saveUser(new Usuario("", this.nomeUser, btoa(this.newPass), this.adminCheck));
     this.showSucess();
     this.ref.close();
   }

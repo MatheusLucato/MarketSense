@@ -17,6 +17,11 @@
         <input type="checkbox" class="form-check-input" id="exibirSenha" [(ngModel)]="exibirSenha" (change)="exibeSenha()">
         <label class="form-check-label" for="exibirSenha">Exibir Senhas</label>
       </div>  
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" (change)="alterarValorCheckbox()">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Admin</label>
+      </div>
+      <br>
       <div class="mb-3">
         <button type="button" class="btn btn-dark" (click)="validaCadastro()">Salvar &larr;</button>
       </div>
