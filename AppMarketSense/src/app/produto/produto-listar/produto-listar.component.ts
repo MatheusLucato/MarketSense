@@ -28,6 +28,7 @@ export class ProdutoListarComponent implements OnInit{
     .catch(error => {
       console.error('Erro ao obter produtos:', error);
     });
+      
   }
 
   abrirDialogEditar(product: Produto) {
@@ -47,12 +48,25 @@ export class ProdutoListarComponent implements OnInit{
 
    async excluirProduct(productId: string){
     await this.produtoService.excluir(productId);
-    this.showSucess();
     this.listaProdutos();
-   }
+
+    
+  }
 
    showSucess() {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Excluido com sucesso!' });
+  }
+
+   showError() {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Erro na exclusao, verifique se possui venda cadastrada ao produto!' });
+  }
+
+  arraysSaoIguais(array1: any[], array2: any[]): boolean {
+    if (array1.length !== array2.length) {
+        return false;
+    }
+
+    return array1.every((element, index) => element === array2[index]);
   }
 
 
