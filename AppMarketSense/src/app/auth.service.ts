@@ -22,6 +22,7 @@ export class AuthService {
       if(result){
         this.salvarChaveAutenticacao(uuidv4());
         this.salvarUserNameAutenticacao(response.data.nome);
+        this.salvarIdAutenticacao(response.data.id);
       }
 
       return result;
@@ -32,6 +33,14 @@ export class AuthService {
       console.error('Erro na requisição:', error);
       return false;
     }
+  }
+
+  salvarIdAutenticacao(id: string){
+    sessionStorage.setItem('id', id);
+  }
+
+  obterIdAutenticacao(): string | null{
+      return sessionStorage.getItem('id');
   }
 
   salvarUserNameAutenticacao(username: string){
@@ -53,6 +62,7 @@ export class AuthService {
   limparChaveAutenticacao(): void {
     sessionStorage.removeItem(this.AUTH_KEY);
     sessionStorage.removeItem('username');
+    sessionStorage.removeItem('id');
   }
 
   verificarChaveAutenticacao(): boolean {

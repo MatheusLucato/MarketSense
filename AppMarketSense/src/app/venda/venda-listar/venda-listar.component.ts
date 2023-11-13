@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { VendaService } from '../service/venda.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Venda } from 'src/app/shared/models/venda.model';
-import { VendaEditarComponent } from '../venda-editar/venda-editar.component';
 import { VendaInserirComponent } from '../venda-inserir/venda-inserir.component';
+import { MessageService } from 'primeng/api';
+import { VendaVisualizarComponent } from '../venda-visualizar/venda-visualizar.component';
 
 @Component({
   selector: 'app-venda-listar',
@@ -13,31 +14,32 @@ import { VendaInserirComponent } from '../venda-inserir/venda-inserir.component'
 export class VendaListarComponent implements OnInit{
   sales: any = [];
 
-  constructor(private vendaService: VendaService, private dialogService: DialogService) {}
+  constructor(private cdr: ChangeDetectorRef, private messageService: MessageService,private vendaService: VendaService, private dialogService: DialogService) {}
 
   ngOnInit() {
-    this.sales = this.vendaService.getVendas();
+    this.listaVendas();
   }
 
-  abrirDialogEditar(venda: Venda) {
-    const ref = this.dialogService.open(VendaEditarComponent, {
-      data: {
-        venda: venda
-      },
-      header: 'Editar venda',
-      width: '70%'
+  listaVendas(){
+    this.vendaService.getVendas()
+    .then(vendas => {
+      this.sales = vendas;
+    })
+    .catch(error => {
+      console.error('Erro ao obter vendas:', error);
     });
+  }
 
-    ref.onClose.subscribe((retorno: Venda) => {
-      if (retorno) {
-        this.sales[this.sales.findIndex((vendaFilter: Venda) => vendaFilter.id === retorno.id)].nome = retorno.nome;
-      }
-    });
+
+   async excluirVenda(venda: Venda){
+    await this.vendaService.excluir(venda.id);
+    this.showSucess();
+    this.listaVendas();
    }
 
-   excluirVenda(venda: Venda){
-    this.sales.splice(this.sales.findIndex((vendaFilter: Venda) => vendaFilter.id === venda.id), 1)
-   }
+   showSucess() {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Excluido com sucesso!' });
+  }
 
 
    abrirDialogCriar() {
@@ -47,10 +49,22 @@ export class VendaListarComponent implements OnInit{
     });
 
     ref.onClose.subscribe((retorno: Venda) => {
-      if (retorno) {
-        let retornoArray = { id: this.sales.length + 1, nome: retorno.nome };
-        //this.sales.push(retornoArray);
-      }
+      this.cdr.detectChanges();
+      this.listaVendas();
+    });
+   }
+
+   abrirDialogVisualizar(sale: Venda) {
+    const ref = this.dialogService.open(VendaVisualizarComponent, {
+      data: {
+        venda: sale
+      },
+      header: 'Visualizar dados da venda',
+      width: '70%'
+    });
+
+    ref.onClose.subscribe((retorno: Venda) => {
+      
     });
    }
 }

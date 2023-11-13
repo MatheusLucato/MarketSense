@@ -22,6 +22,11 @@ import { VendaModule } from './venda/venda.module';
 import { ToastModule } from 'primeng/toast';
 import { MessageModule } from "primeng/message";
 import { MessageService } from 'primeng/api';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DropdownModule } from 'primeng/dropdown';
+
+
+
 
 
 @NgModule({
@@ -45,7 +50,11 @@ import { MessageService } from 'primeng/api';
     DialogModule,
     VendaModule,
     ToastModule,
-    MessageModule
+    MessageModule,
+    MultiSelectModule,
+    DropdownModule,
+    FormsModule
+
   ],
   providers: [DialogService, MessageService],
   bootstrap: [AppComponent]

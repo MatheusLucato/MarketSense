@@ -1,0 +1,19 @@
+<div class="container">
+    <br>
+    <table class="table table-bordered w-100">
+        <thead>
+          <tr>
+            <th class="text-center">Id Produto</th>
+            <th class="text-center">Nome Produto</th>
+            <th class="text-center">Preco Produto</th>
+          </tr>
+        </thead>
+        <tbody>   
+          <tr *ngFor="let product of products" class="align-items-center">
+            <td class="text-center align-middle"> {{ product.id }}</td>
+            <td class="text-center align-middle"> {{ product.nome }}</td>
+            <td class="text-center align-middle"> {{ product.preco }}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
