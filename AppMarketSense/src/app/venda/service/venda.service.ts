@@ -3,6 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 import { Venda } from 'src/app/shared/models/venda.model';
 import { environment } from '../../../environments/environment';
 import { Produto } from 'src/app/shared/models/produto.model';
+import { VendasProdutos } from 'src/app/shared/models/vendasProdutos.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,16 @@ export class VendaService {
       return response.data;
     } catch (error) {
           console.error('Erro ao obter vendas:', error);   
+          throw error;
+    }
+  }
+
+  async getVendasProdutos(): Promise<VendasProdutos[]> {
+    try {
+      const response: AxiosResponse<VendasProdutos[]> = await axios.get(`${this.urlBase}/vendas/produtos`);
+      return response.data;
+    } catch (error) {
+          console.error('Erro ao obter as vendas:', error);   
           throw error;
     }
   }

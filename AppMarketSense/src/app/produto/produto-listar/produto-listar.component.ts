@@ -5,6 +5,8 @@ import { ProdutoEditarComponent } from '../produto-editar/produto-editar.compone
 import { ProdutoService } from '../service/produto.service';
 import { Produto } from 'src/app/shared/models/produto.model';
 import { MessageService } from 'primeng/api';
+import { VendasProdutos } from 'src/app/shared/models/vendasProdutos.model';
+import { VendaService } from 'src/app/venda/service/venda.service';
 
 
 @Component({
@@ -13,11 +15,13 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./produto-listar.component.css']
 })
 export class ProdutoListarComponent implements OnInit{
-  products: any = []
-  constructor(private messageService: MessageService, private dialogService: DialogService, private produtoService: ProdutoService) {}
+  products: any = [];
+  vendas: VendasProdutos[] = [];
+  constructor(private vendaService: VendaService, private messageService: MessageService, private dialogService: DialogService, private produtoService: ProdutoService) {}
 
   ngOnInit() {
     this.listaProdutos();
+    this.listaVendasProdutos();
   }
 
   listaProdutos(){
@@ -27,6 +31,17 @@ export class ProdutoListarComponent implements OnInit{
     })
     .catch(error => {
       console.error('Erro ao obter produtos:', error);
+    });
+      
+  }
+
+  listaVendasProdutos(){
+    this.vendaService.getVendasProdutos()
+    .then(vendas => {
+      this.vendas = vendas;
+    })
+    .catch(error => {
+      console.error('Erro ao obter as vendas:', error);
     });
       
   }
@@ -45,12 +60,25 @@ export class ProdutoListarComponent implements OnInit{
     });
    }
    
+  verificarIdProduto(idProdutoParametro: string): boolean {
+    for (const venda of this.vendas) {
+        if (venda.idProduto === idProdutoParametro) {
+            return true; 
+        }
+    }
+    return false; 
+  }
+
 
    async excluirProduct(productId: string){
-    await this.produtoService.excluir(productId);
-    this.listaProdutos();
-
     
+    if(!this.verificarIdProduto(productId)){
+      await this.produtoService.excluir(productId);
+      this.listaProdutos();
+      this.showSucess();
+    }else{
+      this.showError();
+    }
   }
 
    showSucess() {
